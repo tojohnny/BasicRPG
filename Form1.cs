@@ -12,11 +12,12 @@ namespace BasicRPG
 {
     public partial class Form1 : Form
     {
+        // BasicRPG Main Form Initialization
         public Form1()
         {
             InitializeComponent();
         }
-
+        // New User Registration Button
         private void button1_Click(object sender, EventArgs e)
         {
             string message = "Are you a new user? Click Yes to start registration." + "\n" +

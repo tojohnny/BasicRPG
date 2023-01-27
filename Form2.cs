@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,11 +13,30 @@ namespace BasicRPG
 {
     public partial class Form2 : Form
     {
+        // New User Registration Form Initialization
         public Form2()
         {
             InitializeComponent();
         }
+        // SHA256 Encryption
+        static string ComputeSha256Hash(string rawData)
+        {
+            // Create a SHA256   
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                // ComputeHash - returns byte array  
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
 
+                // Convert byte array to a string   
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
+            }
+        }
+        // Register Button
         private void button1_Click(object sender, EventArgs e)
         {
             if (textBox2.Text != textBox3.Text)
@@ -30,11 +50,12 @@ namespace BasicRPG
             }
             else
             {
-                //TODO: ADD SHA-256 encryption to password before appending to database.
+                string encryptedPassword = ComputeSha256Hash((string)textBox2.Text);
+
                 User user = new User
                 {
                     username = textBox1.Text,
-                    password = textBox2.Text
+                    password = encryptedPassword,
                 };
 
                 UserDAO userDAO = new UserDAO();

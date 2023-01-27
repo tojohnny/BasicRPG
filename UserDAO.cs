@@ -42,7 +42,21 @@ namespace BasicRPG
 
         internal int registerNewUser(User user)
         {
-            throw new NotImplementedException();
+            List<User> users = new List<User>();
+
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = new MySqlCommand();
+            command.CommandText = "INSERT INTO USERS (USERNAME, PASSWORD)  VALUES (@username, @password)";
+            command.Parameters.AddWithValue("@username", user.username);
+            command.Parameters.AddWithValue("@password", user.password);
+            command.Connection = connection;
+
+            int newUser = command.ExecuteNonQuery();
+            connection.Close();
+
+            return newUser;
         }
     }
 }
