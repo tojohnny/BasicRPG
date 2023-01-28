@@ -58,5 +58,36 @@ namespace BasicRPG
 
             return newUser;
         }
+
+        internal List<User> searchUsers(string searchUser)
+        {
+            List<User> users = new List<User>();
+
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            string searchWildPhrase = "%" + searchUser + "%";
+
+            MySqlCommand command = new MySqlCommand();
+            command.CommandText = "SELECT USERNAME, PASSWORD FROM USERS WHERE USERNAME LIKE @searchText";
+            command.Parameters.AddWithValue("@searchText", searchWildPhrase);
+            command.Connection = connection;
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    User user = new User
+                    {
+                        username = reader.GetString(0),
+                        password = reader.GetString(1),
+                    };
+                    users.Add(user);
+                }
+            }
+            connection.Close();
+
+            return users;
+        }
     }
 }

@@ -36,5 +36,24 @@ namespace BasicRPG
                 MessageBox.Show("Canceled registration, please login if you are a returning user.", "Registration Canceled");
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string message = "Are you a returning user? Click yes to login." + "\n" +
+                "New users please register.";
+            string title = "Returning User Login";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, title, buttons, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+
+            if (result == DialogResult.Yes)
+            {
+                var form3 = new Form3();
+                form3.Show();
+            }
+            else if (result == DialogResult.No)
+            {
+                MessageBox.Show("Canceled login, please register if you are a new user.", "Login Canceled");
+            }
+        }
     }
 }
