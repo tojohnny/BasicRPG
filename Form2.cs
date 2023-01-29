@@ -44,13 +44,12 @@ namespace BasicRPG
             bool isValidPassword = false;
             bool isValidEmail = false;
             
-            // Check for valid non-existing username.
+            // Check for valid unique username.
             UserDAO userDAO = new UserDAO();
             List<User> existingUser = new List<User>();
             existingUser = userDAO.searchUsers(textBox1.Text);
 
-            //TODO: username validation.
-            /*if (existingUser[0] is null) 
+            if (existingUser.Any() == false)
             {
                 isValidUsername = true;
             }
@@ -68,8 +67,7 @@ namespace BasicRPG
                 MessageBoxButtons buttons = MessageBoxButtons.OK;
                 MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
                 textBox1.Text = null;
-            }*/
-
+            }
             // Check for valid password, no restrictions besides null field.
             if (textBox2.Text != textBox3.Text)
             {
@@ -94,7 +92,7 @@ namespace BasicRPG
                 isValidPassword = true;
             }
 
-            // Check for valid email
+            // Check for valid email.
             bool IsValidEmail(string email)
             {
                 var trimmedEmail = email.Trim();
@@ -113,7 +111,7 @@ namespace BasicRPG
                     return false;
                 }
             }
-
+            //TODO: Add a check for unique e-mail address.
             if (textBox4.Text == "" || textBox5.Text == "")
             {
                 string message = "One or more e-mail fields are empty, please enter a re-enter a valid password.";
