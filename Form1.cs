@@ -29,7 +29,7 @@ namespace BasicRPG
             if (result == DialogResult.Yes)
             {
                 var form2 = new Form2();
-                form2.Show();
+                form2.ShowDialog();
             }
             else if (result == DialogResult.No)
             {
@@ -48,7 +48,7 @@ namespace BasicRPG
             if (result == DialogResult.Yes)
             {
                 var form3 = new Form3();
-                form3.Show();
+                form3.ShowDialog();
             }
             else if (result == DialogResult.No)
             {

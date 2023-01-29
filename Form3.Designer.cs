@@ -89,6 +89,7 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label4);
             this.Name = "Form3";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Returning User Login";
             this.ResumeLayout(false);
             this.PerformLayout();

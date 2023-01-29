@@ -119,6 +119,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BasicRPG";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
