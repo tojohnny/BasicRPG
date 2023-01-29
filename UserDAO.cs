@@ -52,7 +52,7 @@ namespace BasicRPG
 
             MySqlCommand command = new MySqlCommand();
 
-            command.CommandText = "SELECT USERNAME, FROM USERS WHERE USERNAME LIKE @searchText";
+            command.CommandText = "SELECT USERNAME, FROM USERS WHERE USERNAME = @searchText";
             command.Parameters.AddWithValue("@searchText", searchWildPhrase);
             command.Connection = connection;
 
@@ -90,6 +90,38 @@ namespace BasicRPG
             connection.Close();
 
             return newUser;
+        }
+
+        internal List<User> searchEmails(string searchEmail)
+        {
+            List<User> users = new List<User>();
+
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            string searchWildPhrase = "%" + searchEmail + "%";
+
+            MySqlCommand command = new MySqlCommand();
+            command.CommandText = "SELECT USERNAME, PASSWORD, EMAIL FROM USERS WHERE EMAIL = @searchText";
+            command.Parameters.AddWithValue("@searchText", searchWildPhrase);
+            command.Connection = connection;
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    User user = new User
+                    {
+                        username = reader.GetString(0),
+                        password = reader.GetString(1),
+                        email = reader.GetString(2)
+                    };
+                    users.Add(user);
+                }
+            }
+            connection.Close();
+
+            return users;
         }
 
         internal List<User> searchUsers(string searchUser)

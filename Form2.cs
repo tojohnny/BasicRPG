@@ -43,11 +43,12 @@ namespace BasicRPG
             bool isValidUsername = false;
             bool isValidPassword = false;
             bool isValidEmail = false;
+            bool isUniqueEmail = false;
             
             // Check for valid unique username.
             UserDAO userDAO = new UserDAO();
             List<User> existingUser = new List<User>();
-            existingUser = userDAO.searchUsers(textBox1.Text);
+            existingUser = userDAO.searchUsers(textBox1.Text.ToLower());
 
             if (existingUser.Any() == false)
             {
@@ -87,7 +88,8 @@ namespace BasicRPG
                 textBox2.Text = null;
                 textBox3.Text = null;
             } 
-            else if (textBox2.Text != "" && textBox3.Text != "" && textBox2.Text == textBox3.Text)
+
+            if (textBox2.Text != "" && textBox3.Text != "" && textBox2.Text == textBox3.Text)
             {
                 isValidPassword = true;
             }
@@ -111,15 +113,19 @@ namespace BasicRPG
                     return false;
                 }
             }
-            //TODO: Add a check for unique e-mail address.
+            existingUser = userDAO.searchEmails(textBox5.Text.ToLower());
+            if (existingUser.Any() != false)
+            {
+                isUniqueEmail = true;
+            }
             if (textBox4.Text == "" || textBox5.Text == "")
             {
                 string message = "One or more e-mail fields are empty, please enter a re-enter a valid password.";
                 string title = "E-mail Field Error";
                 MessageBoxButtons buttons = MessageBoxButtons.OK;
                 MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
-                textBox2.Text = null;
-                textBox3.Text = null;
+                textBox4.Text = null;
+                textBox5.Text = null;
             }
             else if (textBox4.Text != textBox5.Text)
             {
@@ -139,11 +145,13 @@ namespace BasicRPG
                 textBox4.Text = null;
                 textBox5.Text = null;
             }
-            else if (textBox4.Text != "" && textBox5.Text != "" && textBox4.Text == textBox5.Text && IsValidEmail(textBox5.Text) == true)
+            
+            if (isUniqueEmail = true && textBox4.Text != "" && textBox5.Text != "" && textBox4.Text == textBox5.Text 
+                && IsValidEmail(textBox5.Text) == true)
             {
                 isValidEmail = true;
             }
-            
+
             // If everything is valid, then submit register new user to the database.
             if (isValidUsername == true && isValidPassword == true && isValidEmail == true)
             {
