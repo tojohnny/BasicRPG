@@ -31,12 +31,44 @@ namespace BasicRPG
                     {
                         playerID = reader.GetInt32(0),
                         username = reader.GetString(1),
-                        password = reader.GetString(2)
+                        password = reader.GetString(2),
+                        email = reader.GetString(3),
                     };
                     users.Add(user);
                 }
             }
             connection.Close();
+            return users;
+        }
+
+        internal List<User> getUser(string username)
+        {
+            List<User> users = new List<User>();
+
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            string searchWildPhrase = "%" + username + "%";
+
+            MySqlCommand command = new MySqlCommand();
+
+            command.CommandText = "SELECT USERNAME, FROM USERS WHERE USERNAME LIKE @searchText";
+            command.Parameters.AddWithValue("@searchText", searchWildPhrase);
+            command.Connection = connection;
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    User user = new User
+                    {
+                        username = reader.GetString(0),
+                    };
+                    users.Add(user);
+                }
+            }
+            connection.Close();
+
             return users;
         }
 
@@ -48,9 +80,10 @@ namespace BasicRPG
             connection.Open();
 
             MySqlCommand command = new MySqlCommand();
-            command.CommandText = "INSERT INTO USERS (USERNAME, PASSWORD)  VALUES (@username, @password)";
+            command.CommandText = "INSERT INTO USERS (USERNAME, PASSWORD, EMAIL)  VALUES (@username, @password, @email)";
             command.Parameters.AddWithValue("@username", user.username);
             command.Parameters.AddWithValue("@password", user.password);
+            command.Parameters.AddWithValue("@email", user.email);
             command.Connection = connection;
 
             int newUser = command.ExecuteNonQuery();
@@ -69,7 +102,7 @@ namespace BasicRPG
             string searchWildPhrase = "%" + searchUser + "%";
 
             MySqlCommand command = new MySqlCommand();
-            command.CommandText = "SELECT USERNAME, PASSWORD FROM USERS WHERE USERNAME LIKE @searchText";
+            command.CommandText = "SELECT USERNAME, PASSWORD, EMAIL FROM USERS WHERE USERNAME LIKE @searchText";
             command.Parameters.AddWithValue("@searchText", searchWildPhrase);
             command.Connection = connection;
 
@@ -81,6 +114,7 @@ namespace BasicRPG
                     {
                         username = reader.GetString(0),
                         password = reader.GetString(1),
+                        email = reader.GetString(2)
                     };
                     users.Add(user);
                 }

@@ -31,7 +31,8 @@ namespace BasicRPG
                     if (existingUser[0].password == inputPassword)
                     {
                         MessageBox.Show("Succesful login, welcome back " + existingUser[0].username + ".", "Login Success");
-                        //TODO: Needs to populate user data for usage later.
+                        Form1 form1 = new Form1();
+                        userDAO.getUser(existingUser[0].username);
                     }
                     else
                     {
