@@ -13,17 +13,21 @@ namespace BasicRPG
 {
     public partial class Form3 : Form
     {
+        // Login Initialization
         public Form3()
         {
             InitializeComponent();
         }
 
+        // Register Button
         private void button1_Click(object sender, EventArgs e)
         {
             UserDAO userDAO = new UserDAO();
             List<User> existingUser = new List<User>();
+
             existingUser = userDAO.searchUsers(textBox1.Text);
             string inputPassword = Form2.ComputeSha256Hash((string)textBox2.Text);
+
             try
             {
                 if (existingUser[0].username == textBox1.Text)
@@ -46,10 +50,12 @@ namespace BasicRPG
             }
             catch (ArgumentOutOfRangeException)
             {
-                string message = "Username does not exist";
-                string title = "Username Field Error";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    "Username does not exist",
+                    "Username Field Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 textBox1.Text = null;
             }
         }

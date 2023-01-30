@@ -38,6 +38,7 @@ namespace BasicRPG
                 }
             }
             connection.Close();
+
             return users;
         }
 

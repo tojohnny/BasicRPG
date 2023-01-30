@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySqlConnector;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,11 +16,12 @@ namespace BasicRPG
 {
     public partial class Form2 : Form
     {
-        // New User Registration Form Initialization
+        // New User Registration Initialization
         public Form2()
         {
             InitializeComponent();
         }
+
         // SHA256 Encryption
         public static string ComputeSha256Hash(string rawData)
         {
@@ -37,122 +40,140 @@ namespace BasicRPG
                 return builder.ToString();
             }
         }
+
+        // E-mail format validation
+        bool IsValidEmail(string email)
+        {
+            var trimmedEmail = email.Trim();
+
+            if (trimmedEmail.EndsWith("."))
+            {
+                return false;
+            }
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == trimmedEmail;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         // Register Button
         private void button1_Click(object sender, EventArgs e)
         {
             bool isValidUsername = false;
             bool isValidPassword = false;
             bool isValidEmail = false;
-            bool isUniqueEmail = false;
-            
-            // Check for valid unique username.
+
             UserDAO userDAO = new UserDAO();
             List<User> existingUser = new List<User>();
-            existingUser = userDAO.searchUsers(textBox1.Text.ToLower());
+            existingUser = userDAO.searchUsers(textBox1.Text);
+            
+            // Username validation.
+            if (textBox1.Text == "")
+            {
+                MessageBox.Show(
+                    "Username field empty." + "\n" + "Please enter a username.",
+                    "Username Field Empty",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+            else if (Regex.IsMatch(textBox1.Text, "^[a-zA-Z0-9]*$") == false)
+            {
+                MessageBox.Show(
+                    "Username contains non-alphanumeric characters." + "\n" + "Please choose a different username.",
+                    "Invalid Username",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
-            if (existingUser.Any() == false)
+                textBox1.Text = null;
+            }
+            else if (existingUser.Any() == false)
             {
                 isValidUsername = true;
             }
-            else if (textBox1.Text == "")
-            {
-                string message = "Username field empty." + "\n" + "Please enter a username.";
-                string title = "Username Field Empty";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
-            }
             else
             {
-                string message = "Username unavailable." + "\n" + "Please choose a different username.";
-                string title = "Username Unavailable";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    "Username already exists." + "\n" + "Please choose a different username.",
+                    "Username Unavailable",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 textBox1.Text = null;
             }
-            // Check for valid password, no restrictions besides null field.
+
+            // Password validation.
             if (textBox2.Text != textBox3.Text)
             {
-                string message = "Passwords do not match, please re-enter password.";
-                string title = "Password Field Error";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    "Passwords do not match, please re-enter password.",
+                    "Password Field Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 textBox2.Text = null;
                 textBox3.Text = null;
             } 
             else if (textBox2.Text == "" || textBox3.Text == "")
             {
-                string message = "One or more password fields are empty, please enter a re-enter a valid password.";
-                string title = "Password Field Error";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    "One or more password fields are empty, please enter a re-enter a valid password.",
+                    "Password Field Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 textBox2.Text = null;
                 textBox3.Text = null;
             } 
-
-            if (textBox2.Text != "" && textBox3.Text != "" && textBox2.Text == textBox3.Text)
+            else if (textBox2.Text != "" && textBox3.Text != "" && textBox2.Text == textBox3.Text)
             {
                 isValidPassword = true;
             }
 
-            // Check for valid email.
-            bool IsValidEmail(string email)
-            {
-                var trimmedEmail = email.Trim();
-
-                if (trimmedEmail.EndsWith("."))
-                {
-                    return false; // suggested by @TK-421
-                }
-                try
-                {
-                    var addr = new System.Net.Mail.MailAddress(email);
-                    return addr.Address == trimmedEmail;
-                }
-                catch
-                {
-                    return false;
-                }
-            }
-            existingUser = userDAO.searchEmails(textBox5.Text.ToLower());
-            if (existingUser.Any() != false)
-            {
-                isUniqueEmail = true;
-            }
+            // Email validation.
             if (textBox4.Text == "" || textBox5.Text == "")
             {
-                string message = "One or more e-mail fields are empty, please enter a re-enter a valid password.";
-                string title = "E-mail Field Error";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    "One or more e-mail fields are empty, please enter a re-enter a valid password.",
+                    "E-mail Field Error",
+                    MessageBoxButtons.OK
+                    , MessageBoxIcon.Warning);
+
                 textBox4.Text = null;
                 textBox5.Text = null;
             }
             else if (textBox4.Text != textBox5.Text)
             {
-                string message = "E-mails do not match, please re-enter e-mail address.";
-                string title = "E-mail Field Error";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    "E-mails do not match, please re-enter e-mail address.",
+                    "E-mail Field Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 textBox4.Text = null;
                 textBox5.Text = null;
             }
             else if (IsValidEmail(textBox5.Text) == false)
             {
-                string message = "Invalid e-mail, please enter a valid e-mail address.";
-                string title = "Invalid e-mail address";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    "Invalid e-mail, please enter a valid e-mail address.",
+                    "Invalid e-mail address",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 textBox4.Text = null;
                 textBox5.Text = null;
             }
-            
-            if (isUniqueEmail = true && textBox4.Text != "" && textBox5.Text != "" && textBox4.Text == textBox5.Text 
+            else if (textBox4.Text != "" && textBox5.Text != "" && textBox4.Text == textBox5.Text
                 && IsValidEmail(textBox5.Text) == true)
             {
                 isValidEmail = true;
             }
 
-            // If everything is valid, then submit register new user to the database.
+            // If everything is valid, then submit.
             if (isValidUsername == true && isValidPassword == true && isValidEmail == true)
             {
                 string encryptedPassword = ComputeSha256Hash((string)textBox2.Text);
@@ -164,12 +185,27 @@ namespace BasicRPG
                     email = textBox5.Text,
                 };
 
-                int result = userDAO.registerNewUser(user);
+                try
+                {
+                    int result = userDAO.registerNewUser(user);
 
-                string message = "Registration completed.";
-                string title = "Successful Registration";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                MessageBox.Show(message, title, buttons, MessageBoxIcon.Information);
+                    MessageBox.Show(
+                        "Registration completed.",
+                        "Successful Registration",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                catch (MySqlException)
+                {
+                    MessageBox.Show(
+                        "E-mail already exists." + "\n" + "Please use a different E-mail address.",
+                        "E-mail Unavailable", 
+                        MessageBoxButtons.OK, 
+                        MessageBoxIcon.Warning);
+
+                    textBox4.Text = null;
+                    textBox5.Text = null;
+                }
             }
         }
     }
