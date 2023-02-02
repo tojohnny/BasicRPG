@@ -63,5 +63,11 @@ namespace BasicRPG
                     "Login Canceled");
             }
         }
+
+        // Account Information
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

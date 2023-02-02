@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace BasicRPG
 {
@@ -12,6 +13,7 @@ namespace BasicRPG
         // Connect to local MySQL Database.
         string connectionString = "datasource=localhost;port=3306;username=root;password=root;database=basicrpg";
 
+        // Get all users
         public List<User> getUsers()
         {
             List<User> users = new List<User>();
@@ -20,7 +22,7 @@ namespace BasicRPG
             connection.Open();
 
             MySqlCommand mySqlCommand = new MySqlCommand();
-            mySqlCommand.CommandText = "SELECT PLAYER_ID, USERNAME, PASSWORD FROM USERS";
+            mySqlCommand.CommandText = "SELECT player_id, username, password, email FROM USERS";
             mySqlCommand.Connection = connection;
 
             using (MySqlDataReader reader = mySqlCommand.ExecuteReader())
@@ -42,37 +44,35 @@ namespace BasicRPG
             return users;
         }
 
-        internal List<User> getUser(string username)
+        // Get specific user
+        public User getUser(string username)
         {
-            List<User> users = new List<User>();
-
+            User user = new User();
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
 
-            string searchWildPhrase = "%" + username + "%";
-
             MySqlCommand command = new MySqlCommand();
 
-            command.CommandText = "SELECT USERNAME, FROM USERS WHERE USERNAME = @searchText";
-            command.Parameters.AddWithValue("@searchText", searchWildPhrase);
+            command.CommandText = "SELECT * FROM users WHERE username=@username";
+            command.Parameters.AddWithValue("@username", username);
             command.Connection = connection;
 
             using (MySqlDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
                 {
-                    User user = new User
-                    {
-                        username = reader.GetString(0),
-                    };
-                    users.Add(user);
+                    user.playerID = reader.GetInt32(0);
+                    user.username = reader.GetString(1);
+                    user.password = reader.GetString(2);
+                    user.email = reader.GetString(3);
                 }
             }
             connection.Close();
 
-            return users;
+            return user;
         }
 
+        // Add new user
         internal int registerNewUser(User user)
         {
             List<User> users = new List<User>();
@@ -93,68 +93,31 @@ namespace BasicRPG
             return newUser;
         }
 
-        internal List<User> searchEmails(string searchEmail)
+        internal User getEmail(string email)
         {
-            List<User> users = new List<User>();
-
+            User user = new User();
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
 
-            string searchWildPhrase = "%" + searchEmail + "%";
-
             MySqlCommand command = new MySqlCommand();
-            command.CommandText = "SELECT USERNAME, PASSWORD, EMAIL FROM USERS WHERE EMAIL = @searchText";
-            command.Parameters.AddWithValue("@searchText", searchWildPhrase);
+
+            command.CommandText = "SELECT * FROM users WHERE email=@email";
+            command.Parameters.AddWithValue("@email", email);
             command.Connection = connection;
 
             using (MySqlDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
                 {
-                    User user = new User
-                    {
-                        username = reader.GetString(0),
-                        password = reader.GetString(1),
-                        email = reader.GetString(2)
-                    };
-                    users.Add(user);
+                    user.playerID = reader.GetInt32(0);
+                    user.username = reader.GetString(1);
+                    user.password = reader.GetString(2);
+                    user.email = reader.GetString(3);
                 }
             }
             connection.Close();
 
-            return users;
-        }
-
-        internal List<User> searchUsers(string searchUser)
-        {
-            List<User> users = new List<User>();
-
-            MySqlConnection connection = new MySqlConnection(connectionString);
-            connection.Open();
-
-            string searchWildPhrase = "%" + searchUser + "%";
-
-            MySqlCommand command = new MySqlCommand();
-            command.CommandText = "SELECT USERNAME, PASSWORD, EMAIL FROM USERS WHERE USERNAME LIKE @searchText";
-            command.Parameters.AddWithValue("@searchText", searchWildPhrase);
-            command.Connection = connection;
-
-            using (MySqlDataReader reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    User user = new User
-                    {
-                        username = reader.GetString(0),
-                        password = reader.GetString(1),
-                        email = reader.GetString(2)
-                    };
-                    users.Add(user);
-                }
-            }
-            connection.Close();
-
-            return users;
+            return user;
         }
     }
 }

@@ -19,44 +19,39 @@ namespace BasicRPG
             InitializeComponent();
         }
 
-        // Register Button
+        // Login Button
         private void button1_Click(object sender, EventArgs e)
         {
             UserDAO userDAO = new UserDAO();
-            List<User> existingUser = new List<User>();
+            User existingUser = new User();
 
-            existingUser = userDAO.searchUsers(textBox1.Text);
-            string inputPassword = Form2.ComputeSha256Hash((string)textBox2.Text);
+            existingUser = userDAO.getUser(textBox1.Text);
 
-            try
+            if (existingUser.username == textBox1.Text)
             {
-                if (existingUser[0].username == textBox1.Text)
+                if (existingUser.password == textBox2.Text)
                 {
-                    if (existingUser[0].password == inputPassword)
-                    {
-                        MessageBox.Show("Succesful login, welcome back " + existingUser[0].username + ".", "Login Success");
-                        Form1 form1 = new Form1();
-                        userDAO.getUser(existingUser[0].username);
-                    }
-                    else
-                    {
-                        string message = "Incorrect password, try again.";
-                        string title = "Incorrect Password";
-                        MessageBoxButtons buttons = MessageBoxButtons.OK;
-                        MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
-                        textBox2.Text = null;
-                    }
+                    MessageBox.Show("Welcome back, " + existingUser.username + ".");
+                }
+                else
+                {
+                    MessageBox.Show("Incorrect Password.\n" + "Please re-enter password.",
+                                    "Password Error",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+
+                    textBox2.Text = null;
                 }
             }
-            catch (ArgumentOutOfRangeException)
+            else
             {
-                MessageBox.Show(
-                    "Username does not exist",
-                    "Username Field Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                MessageBox.Show("Invalid username.\n" + "Are you sure you registered?\n" + "If not, please register an account.",
+                                "Invalid Username",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
 
                 textBox1.Text = null;
+                textBox2.Text = null;
             }
         }
     }
