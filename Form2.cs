@@ -6,7 +6,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net.Mail;
-using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -20,25 +19,6 @@ namespace BasicRPG
         public Form2()
         {
             InitializeComponent();
-        }
-
-        // SHA256 Encryption
-        public static string ComputeSha256Hash(string rawData)
-        {
-            // Create a SHA256   
-            using (SHA256 sha256Hash = SHA256.Create())
-            {
-                // ComputeHash - returns byte array  
-                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
-
-                // Convert byte array to a string   
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < bytes.Length; i++)
-                {
-                    builder.Append(bytes[i].ToString("x2"));
-                }
-                return builder.ToString();
-            }
         }
 
         // E-mail format validation
@@ -205,7 +185,7 @@ namespace BasicRPG
 
             if (isUniqueUsername == true && isUniqueEmail == true)
             {
-                string encryptedPassword = ComputeSha256Hash((string)textBox2.Text);
+                string encryptedPassword = PasswordHash.ComputeSha256Hash((string)textBox2.Text);
 
                 User user = new User
                 {
@@ -217,7 +197,7 @@ namespace BasicRPG
                 int result = userDAO.registerNewUser(user);
 
                 MessageBox.Show(
-                    "Registration completed.",
+                    "Registration completed.\n" + "Please login.",
                     "Successful Registration",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);

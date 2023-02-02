@@ -18,6 +18,17 @@ namespace BasicRPG
             InitializeComponent();
         }
 
+        private static Form1 form1;
+        public static Form1 GetInstance()
+        {
+            if (form1 == null)
+            {
+                form1 = new Form1();
+            }
+
+            return form1;
+        }
+
         // New User Registration Button
         private void button1_Click(object sender, EventArgs e)
         {
@@ -31,6 +42,7 @@ namespace BasicRPG
             if (result == DialogResult.Yes)
             {
                 var form2 = new Form2();
+                form2.Owner = this;
                 form2.ShowDialog();
             }
             else if (result == DialogResult.No)
@@ -54,6 +66,7 @@ namespace BasicRPG
             if (result == DialogResult.Yes)
             {
                 var form3 = new Form3();
+                form3.Owner = this;
                 form3.ShowDialog();
             }
             else if (result == DialogResult.No)
