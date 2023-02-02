@@ -68,6 +68,16 @@ namespace BasicRPG
                 var form3 = new Form3();
                 form3.Owner = this;
                 form3.ShowDialog();
+
+                dataGridView1.DataSource = form3.userBindingSource;
+
+                dataGridView1.Columns[0].HeaderText = "Player ID";
+                dataGridView1.Columns[1].HeaderText = "Username";
+                dataGridView1.Columns[2].Visible = false; // Password
+                dataGridView1.Columns[3].HeaderText = "Email";
+
+                dataGridView1.Refresh();
+
             }
             else if (result == DialogResult.No)
             {

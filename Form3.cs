@@ -13,7 +13,7 @@ namespace BasicRPG
 {
     public partial class Form3 : Form
     {
-        BindingSource userBindingSource = new BindingSource();
+        public BindingSource userBindingSource = new BindingSource();
 
         // Login Initialization
         public Form3()
@@ -41,15 +41,7 @@ namespace BasicRPG
                     existingUserList.Add(existingUser);
                     userBindingSource.DataSource = existingUserList;
 
-                    Form1.GetInstance().dataGridView1.DataSource = userBindingSource;
-
-                    Form1.GetInstance().dataGridView1.Columns[0].HeaderText = "Player ID";
-                    Form1.GetInstance().dataGridView1.Columns[1].HeaderText = "Username";
-                    Form1.GetInstance().dataGridView1.Columns[2].Visible = false; // Password
-                    Form1.GetInstance().dataGridView1.Columns[3].HeaderText = "Email";
-
                     this.Close();
-                    Form1.GetInstance().Show();
                 }
                 else
                 {
