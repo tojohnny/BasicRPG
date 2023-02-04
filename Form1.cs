@@ -87,10 +87,25 @@ namespace BasicRPG
             }
         }
 
-        // Account Information
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        // New Character Button
+        private void button3_Click(object sender, EventArgs e)
         {
-
+            DialogResult result = MessageBox.Show("Would you like to create a new character?",
+                                                  "Character Creator",
+                                                  MessageBoxButtons.YesNo,
+                                                  MessageBoxIcon.Information,
+                                                  MessageBoxDefaultButton.Button2);
+            if (result == DialogResult.Yes)
+            {
+                var form4 = new Form4();
+                form4.Owner = this;
+                form4.ShowDialog();
+            }
+            else if (result == DialogResult.No)
+            {
+                MessageBox.Show("Canceled login, please register if you are a new user.",
+                                "Login Canceled");
+            }
         }
     }
 }
