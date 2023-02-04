@@ -14,19 +14,10 @@ Single-player Text RPG implemented with as many relevant known RPG mechanics as 
 
 ![Main UI](https://github.com/tojohnny/BasicRPG/blob/master/gui/main_02.png?raw=true)
 
-# Description
+# Project Properties
 - Built on .NET Framework 4.7.2
 - Local MySQL Server Database hosted with MAMP
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-# Database Properties
-- User database (player_id, username, password, email)
-  - playerid (primary key, auto_increment)
-  - username (unique)
-  - password
-  - email (unique)
-  - 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 # Features
