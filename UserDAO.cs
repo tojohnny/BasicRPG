@@ -13,37 +13,6 @@ namespace BasicRPG
         // Connect to local MySQL Database.
         string connectionString = "datasource=localhost;port=3306;username=root;password=root;database=basicrpg";
 
-        // Get all users
-        public List<User> getUsers()
-        {
-            List<User> users = new List<User>();
-
-            MySqlConnection connection = new MySqlConnection(connectionString);
-            connection.Open();
-
-            MySqlCommand mySqlCommand = new MySqlCommand();
-            mySqlCommand.CommandText = "SELECT player_id, username, password, email FROM user";
-            mySqlCommand.Connection = connection;
-
-            using (MySqlDataReader reader = mySqlCommand.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    User user = new User
-                    {
-                        playerID = reader.GetInt32(0),
-                        username = reader.GetString(1),
-                        password = reader.GetString(2),
-                        email = reader.GetString(3),
-                    };
-                    users.Add(user);
-                }
-            }
-            connection.Close();
-
-            return users;
-        }
-
         // Get specific user
         public User getUser(string searchTerm)
         {
@@ -53,7 +22,7 @@ namespace BasicRPG
 
             MySqlCommand command = new MySqlCommand();
 
-            command.CommandText = "SELECT * FROM user WHERE username=@searchterm OR email=searchterm";
+            command.CommandText = "SELECT * FROM user WHERE username=@searchterm OR email=@searchterm";
             command.Parameters.AddWithValue("@searchterm", searchTerm);
             command.Connection = connection;
 
