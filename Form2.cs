@@ -51,7 +51,7 @@ namespace BasicRPG
             User existingEmail = new User();
 
             existingUser = userDAO.getUser(textBox1.Text);
-            existingEmail = userDAO.getEmail(textBox5.Text);
+            existingEmail = userDAO.getUser(textBox5.Text);
             
             // Username validation conditions.
             if (textBox1.Text == "")

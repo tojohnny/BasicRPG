@@ -22,7 +22,7 @@ namespace BasicRPG
             connection.Open();
 
             MySqlCommand mySqlCommand = new MySqlCommand();
-            mySqlCommand.CommandText = "SELECT player_id, username, password, email FROM USERS";
+            mySqlCommand.CommandText = "SELECT player_id, username, password, email FROM user";
             mySqlCommand.Connection = connection;
 
             using (MySqlDataReader reader = mySqlCommand.ExecuteReader())
@@ -45,7 +45,7 @@ namespace BasicRPG
         }
 
         // Get specific user
-        public User getUser(string username)
+        public User getUser(string searchTerm)
         {
             User user = new User();
             MySqlConnection connection = new MySqlConnection(connectionString);
@@ -53,8 +53,8 @@ namespace BasicRPG
 
             MySqlCommand command = new MySqlCommand();
 
-            command.CommandText = "SELECT * FROM users WHERE username=@username";
-            command.Parameters.AddWithValue("@username", username);
+            command.CommandText = "SELECT * FROM user WHERE username=@searchterm OR email=searchterm";
+            command.Parameters.AddWithValue("@searchterm", searchTerm);
             command.Connection = connection;
 
             using (MySqlDataReader reader = command.ExecuteReader())
@@ -81,7 +81,7 @@ namespace BasicRPG
             connection.Open();
 
             MySqlCommand command = new MySqlCommand();
-            command.CommandText = "INSERT INTO USERS (USERNAME, PASSWORD, EMAIL)  VALUES (@username, @password, @email)";
+            command.CommandText = "INSERT INTO user (username, password, email) VALUES (@username, @password, @email)";
             command.Parameters.AddWithValue("@username", user.username);
             command.Parameters.AddWithValue("@password", user.password);
             command.Parameters.AddWithValue("@email", user.email);
@@ -91,33 +91,6 @@ namespace BasicRPG
             connection.Close();
 
             return newUser;
-        }
-
-        internal User getEmail(string email)
-        {
-            User user = new User();
-            MySqlConnection connection = new MySqlConnection(connectionString);
-            connection.Open();
-
-            MySqlCommand command = new MySqlCommand();
-
-            command.CommandText = "SELECT * FROM users WHERE email=@email";
-            command.Parameters.AddWithValue("@email", email);
-            command.Connection = connection;
-
-            using (MySqlDataReader reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    user.playerID = reader.GetInt32(0);
-                    user.username = reader.GetString(1);
-                    user.password = reader.GetString(2);
-                    user.email = reader.GetString(3);
-                }
-            }
-            connection.Close();
-
-            return user;
         }
     }
 }

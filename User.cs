@@ -12,7 +12,7 @@ namespace BasicRPG
         public string username { get; set; }
         public string password { get; set; }
         public string email { get; set; }
+        public List<UserHistory> history { get; set; }
         public List<Character> characters { get; set; }
-
     }
 }
