@@ -20,7 +20,7 @@ namespace BasicRPG
         // Create button
         private void button1_Click(object sender, EventArgs e)
         {
-            UserDAO userDAO = new UserDAO();
+            CharacterDAO characterDAO = new characterDAO();
             Character newCharacter = new Character();
             CharacterHistory history = new CharacterHistory();
 

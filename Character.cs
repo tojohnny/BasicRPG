@@ -10,9 +10,11 @@ namespace BasicRPG
     {
         public int characterID { get; set; }
         public string characterName { get; set; }
-        public string className { get; set; }
+        public string characterGender { get; set; }
+        public string characterRace { get; set; }
+        public int classID { get; set; }
         public int userID { get; set; }
-        public List<CharacterHistory>  history { get; set; }
+        public List<CharacterHistory> history { get; set; }
         public List<Inventory> inventory { get; set; }
     }
 }
