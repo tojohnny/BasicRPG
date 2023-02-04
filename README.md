@@ -12,7 +12,7 @@
 # About The Project
 Single-player Text RPG implemented with as many relevant known RPG mechanics as possible.
 
-![Main UI](https://github.com/tojohnny/BasicRPG/blob/master/gui/main_02.png?raw=true)
+![Main UI](https://github.com/tojohnny/BasicRPG/blob/master/gui/main_03.png?raw=true)
 
 # Project Properties
 - Built on .NET Framework 4.7.2
