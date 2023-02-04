@@ -1,8 +1,8 @@
-						   ____            _      ____  ____   ____ 
-						  | __ )  __ _ ___(_) ___|  _ \|  _ \ / ___|
-						  |  _ \ / _` / __| |/ __| |_) | |_) | |  _ 
-						  | |_) | (_| \__ \ | (__|  _ <|  __/| |_| |
-						  |____/ \__,_|___/_|\___|_| \_\_|    \____|
+	 ____            _      ____  ____   ____ 
+	| __ )  __ _ ___(_) ___|  _ \|  _ \ / ___|
+	|  _ \ / _` / __| |/ __| |_) | |_) | |  _ 
+	| |_) | (_| \__ \ | (__|  _ <|  __/| |_| |
+	|____/ \__,_|___/_|\___|_| \_\_|    \____|
 <div align="center">
 
 ![GitHub contributors](https://img.shields.io/github/contributors/tojohnny/BasicRPG?logo=GitHub&style=for-the-badge) ![GitHub last commit](https://img.shields.io/github/last-commit/tojohnny/BasicRPG?logo=GitHub&style=for-the-badge) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/tojohnny/BasicRPG?logo=GitHub&style=for-the-badge) ![GitHub](https://img.shields.io/github/license/tojohnny/BasicRPG?style=for-the-badge)
