@@ -7,6 +7,8 @@
 
 ![GitHub contributors](https://img.shields.io/github/contributors/tojohnny/BasicRPG?logo=GitHub&style=for-the-badge) ![GitHub last commit](https://img.shields.io/github/last-commit/tojohnny/BasicRPG?logo=GitHub&style=for-the-badge) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/tojohnny/BasicRPG?logo=GitHub&style=for-the-badge) ![GitHub](https://img.shields.io/github/license/tojohnny/BasicRPG?style=for-the-badge)
 
+</div>
+
 # About The Project
 Single-player Text RPG implemented with as many relevant known RPG mechanics as possible.
 
