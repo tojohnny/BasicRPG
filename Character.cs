@@ -12,7 +12,7 @@ namespace BasicRPG
         public string characterName { get; set; }
         public string characterGender { get; set; }
         public string characterRace { get; set; }
-        public int classID { get; set; }
+        public string className { get; set; }
         public int userID { get; set; }
 
     }

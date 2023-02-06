@@ -14,22 +14,6 @@ namespace BasicRPG
 {
     public partial class Form4 : Form
     {
-        Dictionary<string, int> classDictionary = new Dictionary<string, int>
-        {
-            { "Bard", 1 },
-            { "Bowman", 2 },
-            { "Brawler", 3 },
-            { "Cleric", 4 },
-            { "Fighter", 5 },
-            { "Hunter", 6 },
-            { "Magician", 7 },
-            { "Monk", 8 },
-            { "Paladin", 9 },
-            { "Rogue", 10 },
-            { "Warrior", 11 },
-            { "Witch", 12 }
-        };
-
         public Form4()
         {
             InitializeComponent();
@@ -70,7 +54,7 @@ namespace BasicRPG
                     characterName = textBox1.Text,
                     characterGender = comboBox1.SelectedItem.ToString(),
                     characterRace = comboBox2.SelectedItem.ToString(),
-                    classID = classDictionary[comboBox3.SelectedItem.ToString()],
+                    className = comboBox3.SelectedItem.ToString(),
                     userID = (int)form1.dataGridView1.Rows[0].Cells[0].Value,
                 };
 

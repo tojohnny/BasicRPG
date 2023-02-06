@@ -37,7 +37,7 @@ namespace BasicRPG
                         characterName = reader.GetString(1),
                         characterGender = reader.GetString(2),
                         characterRace = reader.GetString(3),
-                        classID = reader.GetInt32(4),
+                        className = reader.GetString(4),
                         userID = reader.GetInt32(5),
                     };
                     allCharacters.Add(character);
@@ -68,7 +68,7 @@ namespace BasicRPG
                     character.characterName = reader.GetString(1);
                     character.characterGender = reader.GetString(2);
                     character.characterRace = reader.GetString(3);
-                    character.classID = reader.GetInt32(4);
+                    character.className = reader.GetString(4);
                     character.userID = reader.GetInt32(5);
                 }
             }
@@ -86,12 +86,12 @@ namespace BasicRPG
             connection.Open();
 
             MySqlCommand command = new MySqlCommand();
-            command.CommandText = "INSERT INTO `character`(`character_name`, `character_gender`, `character_race`, `class_id`, `user_id`)" +
-                " VALUES (@charactername, @charactergender, @characterrace, @classid, @userid)";
+            command.CommandText = "INSERT INTO `character`(`character_name`, `character_gender`, `character_race`, `class_name`, `user_id`)" +
+                " VALUES (@charactername, @charactergender, @characterrace, @classname, @userid)";
             command.Parameters.AddWithValue("@charactername", character.characterName);
             command.Parameters.AddWithValue("@charactergender", character.characterGender);
             command.Parameters.AddWithValue("@characterrace", character.characterRace);
-            command.Parameters.AddWithValue("@classid", character.classID);
+            command.Parameters.AddWithValue("@classname", character.className);
             command.Parameters.AddWithValue("@userid", character.userID);
             command.Connection = connection;
 
