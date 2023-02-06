@@ -13,8 +13,6 @@ namespace BasicRPG
 {
     public partial class Form1 : Form
     {
-        public static DateTime time = DateTime.Now;
-        public static string timestamp = time.ToString();
         private static List<Character> loadedCharacter = new List<Character>();
 
         // BasicRPG Initialization
@@ -114,8 +112,12 @@ namespace BasicRPG
         // Load Character
         private void button6_Click(object sender, EventArgs e)
         {
-            var rowClicked = dataGridView2.CurrentCell.RowIndex;
+            if (loadedCharacter.Any() == true)
+            {
+                loadedCharacter.Clear();
+            }
 
+            var rowClicked = dataGridView2.CurrentCell.RowIndex;
             Character loadCharacter = new Character
             {
                 characterID = (int)dataGridView2.Rows[rowClicked].Cells[0].Value,
@@ -138,6 +140,9 @@ namespace BasicRPG
         // COMMAND BOX TO CONSOLE
         private void textBox2_KeyDown(object sender, KeyEventArgs e)
         {
+            DateTime time = DateTime.Now;
+            string timestamp = time.ToString();
+
             if (e.KeyCode == Keys.Enter)
             {
                 string modifiedMessage = "["+ (string)timestamp +"]" + loadedCharacter[0].characterName + ": " + textBox2.Text;
