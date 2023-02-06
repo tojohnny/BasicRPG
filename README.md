@@ -30,6 +30,12 @@ Single-player Text RPG implemented with as many relevant known RPG mechanics as 
 	- Username
 	- Password
 
+- Character Creation
+	- Name
+	- Gender
+	- Race
+	- Class
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 # Database UML Diagram
