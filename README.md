@@ -42,8 +42,8 @@ List will update as progress moves forward, sometimes too many wants will lead t
 List in no particular order.
 - [x] New User Registration Form
 - [x] Login Form
-- [ ] Populate with account data and character data after login.
-- [ ] Character creation.
+- [x] Populate with account data and character data after login.
+- [x] Character creation.
 - [ ] Add class data.
 - [ ] Add character inventory/inventory history.
 - [ ] Add items.
