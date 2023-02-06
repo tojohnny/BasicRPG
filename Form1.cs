@@ -112,6 +112,9 @@ namespace BasicRPG
         // Load Character
         private void button6_Click(object sender, EventArgs e)
         {
+            DateTime time = DateTime.Now;
+            string timestamp = time.ToString();
+
             if (loadedCharacter.Any() == true)
             {
                 loadedCharacter.Clear();
@@ -133,7 +136,7 @@ namespace BasicRPG
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
 
-            textBox1.AppendText("Welcome back, " + loadCharacter.characterName + ".");
+            textBox1.AppendText("[" + (string)timestamp + "] (SYSTEM): " + "Welcome back, " + loadedCharacter[0].characterName + ". ");
             textBox1.AppendText(Environment.NewLine);
         }
 
@@ -145,7 +148,7 @@ namespace BasicRPG
 
             if (e.KeyCode == Keys.Enter)
             {
-                string modifiedMessage = "["+ (string)timestamp +"]" + loadedCharacter[0].characterName + ": " + textBox2.Text;
+                string modifiedMessage = "["+ (string)timestamp +"] (PLAYER) " + loadedCharacter[0].characterName + ": " + textBox2.Text;
                 textBox1.AppendText(modifiedMessage);
                 textBox1.AppendText(Environment.NewLine);
                 textBox2.Text = null;
