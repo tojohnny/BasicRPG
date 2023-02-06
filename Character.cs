@@ -14,7 +14,6 @@ namespace BasicRPG
         public string characterRace { get; set; }
         public int classID { get; set; }
         public int userID { get; set; }
-        public List<CharacterHistory> history { get; set; }
-        public List<Inventory> inventory { get; set; }
+
     }
 }

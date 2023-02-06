@@ -14,15 +14,17 @@ namespace BasicRPG
         string connectionString = "datasource=localhost;port=3306;username=root;password=root;database=basicrpg";
 
         // Get all characters
-        public List<Character> getCharacters()
+        public List<Character> getCharacters(int userID)
         {
             List<Character> allCharacters = new List<Character>();
+
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
 
             MySqlCommand command = new MySqlCommand();
 
-            command.CommandText = "SELECT * FROM character";
+            command.CommandText = "SELECT * FROM `character` WHERE user_id = @userid";
+            command.Parameters.AddWithValue("@userid", userID);
             command.Connection = connection;
 
             using (MySqlDataReader reader = command.ExecuteReader())
@@ -54,7 +56,7 @@ namespace BasicRPG
 
             MySqlCommand command = new MySqlCommand();
 
-            command.CommandText = "SELECT * FROM character WHERE character_name=@searchterm";
+            command.CommandText = "SELECT * FROM `character` WHERE character_name=@searchterm";
             command.Parameters.AddWithValue("@searchterm", searchTerm);
             command.Connection = connection;
 
@@ -75,25 +77,28 @@ namespace BasicRPG
             return character;
         }
 
-        // Add new user
-        internal int registerNewUser(User user)
+        // Create new character
+        internal int createNewCharacter(Character character)
         {
-            List<User> users = new List<User>();
+            List<Character> users = new List<Character>();
 
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
 
             MySqlCommand command = new MySqlCommand();
-            command.CommandText = "INSERT INTO user (username, password, email) VALUES (@username, @password, @email)";
-            command.Parameters.AddWithValue("@username", user.username);
-            command.Parameters.AddWithValue("@password", user.password);
-            command.Parameters.AddWithValue("@email", user.email);
+            command.CommandText = "INSERT INTO `character`(`character_name`, `character_gender`, `character_race`, `class_id`, `user_id`)" +
+                " VALUES (@charactername, @charactergender, @characterrace, @classid, @userid)";
+            command.Parameters.AddWithValue("@charactername", character.characterName);
+            command.Parameters.AddWithValue("@charactergender", character.characterGender);
+            command.Parameters.AddWithValue("@characterrace", character.characterRace);
+            command.Parameters.AddWithValue("@classid", character.classID);
+            command.Parameters.AddWithValue("@userid", character.userID);
             command.Connection = connection;
 
-            int newUser = command.ExecuteNonQuery();
+            var newCharacter = command.ExecuteNonQuery();
             connection.Close();
 
-            return newUser;
+            return newCharacter;
         }
     }
 }

@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace BasicRPG
 {
-    internal class User
+    public class User
     {
         public int playerID { get; set; }
         public string username { get; set; }
         public string password { get; set; }
         public string email { get; set; }
-        public List<UserHistory> history { get; set; }
-        public List<Character> characters { get; set; }
     }
 }

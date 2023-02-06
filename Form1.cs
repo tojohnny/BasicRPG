@@ -18,17 +18,6 @@ namespace BasicRPG
             InitializeComponent();
         }
 
-        private static Form1 form1;
-        public static Form1 GetInstance()
-        {
-            if (form1 == null)
-            {
-                form1 = new Form1();
-            }
-
-            return form1;
-        }
-
         // New User Registration Button
         private void button1_Click(object sender, EventArgs e)
         {
@@ -70,14 +59,23 @@ namespace BasicRPG
                 form3.ShowDialog();
 
                 dataGridView1.DataSource = form3.userBindingSource;
+                dataGridView2.DataSource = form3.characterBindingSource;
 
                 dataGridView1.Columns[0].HeaderText = "Player ID";
                 dataGridView1.Columns[1].HeaderText = "Username";
                 dataGridView1.Columns[2].Visible = false; // Password
                 dataGridView1.Columns[3].HeaderText = "Email";
 
-                dataGridView1.Refresh();
+                dataGridView2.Columns[0].HeaderText = "ID";
+                dataGridView2.Columns[1].HeaderText = "Name";
+                dataGridView2.Columns[2].HeaderText = "Gender";
+                dataGridView2.Columns[3].HeaderText = "Race";
+                dataGridView2.Columns[4].HeaderText = "Class";
+                dataGridView2.Columns[5].Visible = false; // User ID
 
+
+                dataGridView1.Refresh();
+                dataGridView2.Refresh();
             }
             else if (result == DialogResult.No)
             {
@@ -106,6 +104,13 @@ namespace BasicRPG
                 MessageBox.Show("Canceled login, please register if you are a new user.",
                                 "Login Canceled");
             }
+        }
+        // Refresh data
+        private void button6_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Refresh();
+            dataGridView2.Refresh();
+            dataGridView3.Refresh();
         }
     }
 }

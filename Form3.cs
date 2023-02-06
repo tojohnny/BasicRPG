@@ -14,6 +14,7 @@ namespace BasicRPG
     public partial class Form3 : Form
     {
         public BindingSource userBindingSource = new BindingSource();
+        public BindingSource characterBindingSource = new BindingSource();
 
         // Login Initialization
         public Form3()
@@ -22,13 +23,18 @@ namespace BasicRPG
         }
 
         // Login Button
-        private void button1_Click(object sender, EventArgs e)
+        public void button1_Click(object sender, EventArgs e)
         {
             UserDAO userDAO = new UserDAO();
+            CharacterDAO characterDAO = new CharacterDAO();
+
             User existingUser = new User();
+
             List<User> existingUserList = new List<User>();
+            List<Character> characterList = new List<Character>();
 
             existingUser = userDAO.getUser(textBox1.Text);
+            
 
             if (existingUser.username == textBox1.Text)
             {
@@ -40,6 +46,9 @@ namespace BasicRPG
 
                     existingUserList.Add(existingUser);
                     userBindingSource.DataSource = existingUserList;
+
+                    characterList = characterDAO.getCharacters(existingUser.playerID);
+                    characterBindingSource.DataSource = characterList;
 
                     this.Close();
                 }
