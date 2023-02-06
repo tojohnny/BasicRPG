@@ -197,10 +197,12 @@
             // 
             // textBox2
             // 
+            this.textBox2.AccessibleDescription = "";
             this.textBox2.Location = new System.Drawing.Point(77, 391);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(661, 20);
             this.textBox2.TabIndex = 8;
+            this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyDown);
             // 
             // label2
             // 

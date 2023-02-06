@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,6 +13,10 @@ namespace BasicRPG
 {
     public partial class Form1 : Form
     {
+        public static DateTime time = DateTime.Now;
+        public static string timestamp = time.ToString();
+        private static List<Character> loadedCharacter = new List<Character>();
+
         // BasicRPG Initialization
         public Form1()
         {
@@ -105,6 +110,7 @@ namespace BasicRPG
                                 "Login Canceled");
             }
         }
+
         // Load Character
         private void button6_Click(object sender, EventArgs e)
         {
@@ -118,6 +124,7 @@ namespace BasicRPG
                 characterRace = (string)dataGridView2.Rows[rowClicked].Cells[3].Value,
                 className = (string)dataGridView2.Rows[rowClicked].Cells[4].Value,
             };
+            loadedCharacter.Add(loadCharacter);
 
             MessageBox.Show("Welcome back, " + loadCharacter.characterName + ".",
                             "Character Loaded",
@@ -128,11 +135,16 @@ namespace BasicRPG
             textBox1.AppendText(Environment.NewLine);
         }
 
-        // Console On Load
-
-        private void textBox1_Load(object sender, EventArgs e)
+        // COMMAND BOX TO CONSOLE
+        private void textBox2_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Enter)
+            {
+                string modifiedMessage = "["+ (string)timestamp +"]" + loadedCharacter[0].characterName + ": " + textBox2.Text;
+                textBox1.AppendText(modifiedMessage);
+                textBox1.AppendText(Environment.NewLine);
+                textBox2.Text = null;
+            }
         }
     }
 }
