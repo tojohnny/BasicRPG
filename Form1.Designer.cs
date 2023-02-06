@@ -179,6 +179,7 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(732, 371);
             this.textBox1.TabIndex = 6;
             // 
@@ -282,7 +283,7 @@
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 39);
             this.button6.TabIndex = 9;
-            this.button6.Text = "Refresh Data";
+            this.button6.Text = "Load Character";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 

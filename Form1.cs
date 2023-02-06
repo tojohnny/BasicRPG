@@ -105,12 +105,34 @@ namespace BasicRPG
                                 "Login Canceled");
             }
         }
-        // Refresh data
+        // Load Character
         private void button6_Click(object sender, EventArgs e)
         {
-            dataGridView1.Refresh();
-            dataGridView2.Refresh();
-            dataGridView3.Refresh();
+            var rowClicked = dataGridView2.CurrentCell.RowIndex;
+
+            Character loadCharacter = new Character
+            {
+                characterID = (int)dataGridView2.Rows[rowClicked].Cells[0].Value,
+                characterName = (string)dataGridView2.Rows[rowClicked].Cells[1].Value,
+                characterGender = (string)dataGridView2.Rows[rowClicked].Cells[2].Value,
+                characterRace = (string)dataGridView2.Rows[rowClicked].Cells[3].Value,
+                className = (string)dataGridView2.Rows[rowClicked].Cells[4].Value,
+            };
+
+            MessageBox.Show("Welcome back, " + loadCharacter.characterName + ".",
+                            "Character Loaded",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+
+            textBox1.AppendText("Welcome back, " + loadCharacter.characterName + ".");
+            textBox1.AppendText(Environment.NewLine);
+        }
+
+        // Console On Load
+
+        private void textBox1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
