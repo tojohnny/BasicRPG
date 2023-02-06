@@ -12,7 +12,7 @@
 # About The Project
 Single-player Text RPG implemented with as many relevant known RPG mechanics as possible.
 
-![Main UI](https://github.com/tojohnny/BasicRPG/blob/master/gui/main_03.png?raw=true)
+![Main UI](https://github.com/tojohnny/BasicRPG/blob/master/gui/main_04.png?raw=true)
 
 # Project Properties
 - Built on .NET Framework 4.7.2
@@ -35,6 +35,8 @@ Single-player Text RPG implemented with as many relevant known RPG mechanics as 
 	- Gender
 	- Race
 	- Class
+- Console / Chatbox
+	- Displays character messages, actions, etc.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -57,6 +59,8 @@ List in no particular order.
 - [ ] Add Character History.
 - [x] Add UML diagram to README.
 - [x] Re-design README.
+- [x] Chatbox features.
+- [ ] Console/Chat log output at end of session.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
