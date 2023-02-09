@@ -52,7 +52,8 @@ List in no particular order.
 - [x] Login Form
 - [x] Populate with account data and character data after login.
 - [x] Character creation.
-- [X] Add class data.
+- [x] Character stats linked to character.
+- [ ] Add class data.
 - [ ] Add character inventory/inventory history.
 - [ ] Add items.
 - [ ] Add User Account History.
