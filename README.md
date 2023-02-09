@@ -52,11 +52,11 @@ List in no particular order.
 - [x] Login Form
 - [x] Populate with account data and character data after login.
 - [x] Character creation.
-- [ ] Add class data.
+- [X] Add class data.
 - [ ] Add character inventory/inventory history.
 - [ ] Add items.
 - [ ] Add User Account History.
-- [ ] Add Character History.
+- [X] Add Character History.
 - [x] Add UML diagram to README.
 - [x] Re-design README.
 - [x] Chatbox features.
