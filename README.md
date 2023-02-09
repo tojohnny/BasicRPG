@@ -60,7 +60,8 @@ List in no particular order.
 - [x] Add UML diagram to README.
 - [x] Re-design README.
 - [x] Chatbox features.
-- [ ] Console/Chat log output at end of session.
+- [ ] Chat log output at end of session.
+- [ ] Runtime/Execution log during session.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
