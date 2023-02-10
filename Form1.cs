@@ -114,7 +114,10 @@ namespace BasicRPG
         {
             DateTime time = DateTime.Now;
             string timestamp = time.ToString();
+
             CharacterDAO characterDAO = new CharacterDAO();
+            CharacterStat loadedCharacterStats = new CharacterStat();
+            CharacterLevel loadedCharacterLevel = new CharacterLevel();
 
             if (loadedCharacter.Any() == true)
             {
@@ -133,6 +136,19 @@ namespace BasicRPG
             loadedCharacter.Add(loadCharacter);
             characterDAO.updateLastLogin(loadCharacter);
             groupBox1.Text = loadCharacter.characterName;
+
+            loadedCharacterStats = characterDAO.getCharacterStat(loadCharacter);
+            loadedCharacterLevel = characterDAO.getCharacterLevel(loadCharacter);
+
+            label9.Text = loadedCharacterStats.healthPoint.ToString();
+            label10.Text = loadedCharacterStats.manaPoint.ToString();
+            label11.Text = loadedCharacterStats.strength.ToString();
+            label12.Text = loadedCharacterStats.dexterity.ToString();
+            label13.Text = loadedCharacterStats.intelligence.ToString();
+            label14.Text = loadedCharacterStats.agility.ToString();
+
+            label17.Text = loadedCharacterLevel.level.ToString();
+            label18.Text = loadedCharacterLevel.experiencePoint.ToString();
 
             MessageBox.Show("Welcome back, " + loadCharacter.characterName + ".",
                             "Character Loaded",

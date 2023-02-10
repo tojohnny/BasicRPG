@@ -48,7 +48,7 @@ namespace BasicRPG
                     existingUserList.Add(existingUser);
                     userBindingSource.DataSource = existingUserList;
 
-                    characterList = characterDAO.getCharacters(existingUser.playerID);
+                    characterList = characterDAO.getCharacters(existingUser.userID);
                     characterBindingSource.DataSource = characterList;
 
                     this.Close();

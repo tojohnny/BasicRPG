@@ -72,6 +72,8 @@
     <Compile Include="Character.cs" />
     <Compile Include="CharacterDAO.cs" />
     <Compile Include="CharacterHistory.cs" />
+    <Compile Include="CharacterLevel.cs" />
+    <Compile Include="CharacterStat.cs" />
     <Compile Include="Form4.cs">
       <SubType>Form</SubType>
     </Compile>

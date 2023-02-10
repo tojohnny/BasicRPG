@@ -30,7 +30,7 @@ namespace BasicRPG
             {
                 while (reader.Read())
                 {
-                    user.playerID = reader.GetInt32(0);
+                    user.userID = reader.GetInt32(0);
                     user.username = reader.GetString(1);
                     user.password = reader.GetString(2);
                     user.email = reader.GetString(3);
@@ -62,6 +62,7 @@ namespace BasicRPG
             return newUser;
         }
 
+        // Update User Last Login
         internal void updateLastLogin(User user)
         {
             MySqlConnection connection = new MySqlConnection(connectionString);
@@ -70,7 +71,7 @@ namespace BasicRPG
             MySqlCommand command = new MySqlCommand();
             command.CommandText = "UPDATE user_history SET user_last_login=@timestamp WHERE user_id=@userid";
             command.Parameters.AddWithValue("@timestamp", DateTime.Now);
-            command.Parameters.AddWithValue("@userid", user.playerID);
+            command.Parameters.AddWithValue("@userid", user.userID);
             command.Connection = connection;
 
             int userUpdate = command.ExecuteNonQuery();

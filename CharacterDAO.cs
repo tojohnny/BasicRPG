@@ -101,6 +101,7 @@ namespace BasicRPG
             return newCharacter;
         }
 
+        // Update Character Last Login
         internal void updateLastLogin(Character character)
         {
             MySqlConnection connection = new MySqlConnection(connectionString);
@@ -114,6 +115,66 @@ namespace BasicRPG
 
             int userUpdate = command.ExecuteNonQuery();
             connection.Close();
+        }
+
+        public CharacterStat getCharacterStat(Character character)
+        {
+            CharacterStat characterStat = new CharacterStat();
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = new MySqlCommand();
+
+            command.CommandText = "SELECT `character_stat_id`, `health_point`, `mana_point`, `strength`, `dexterity`, `intelligence`, `agility`, `character_id`" +
+                " FROM `character_stat` WHERE character_id=@searchterm";
+            command.Parameters.AddWithValue("@searchterm", character.characterID);
+            command.Connection = connection;
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    characterStat.characterStatID = reader.GetInt32(0);
+                    characterStat.healthPoint = reader.GetInt32(1);
+                    characterStat.manaPoint = reader.GetInt32(2);
+                    characterStat.strength = reader.GetInt32(3);
+                    characterStat.dexterity = reader.GetInt32(4);
+                    characterStat.intelligence = reader.GetInt32(5);
+                    characterStat.agility = reader.GetInt32(6);
+                    characterStat.characterID = reader.GetInt32(7);
+                }
+                connection.Close();
+
+                return characterStat;
+            }
+        }
+
+        public CharacterLevel getCharacterLevel(Character character)
+        {
+            CharacterLevel characterLevel = new CharacterLevel();
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = new MySqlCommand();
+
+            command.CommandText = "SELECT `character_level_id`, `character_level`, `character_experience_point`, `character_id`" +
+                " FROM `character_level` WHERE character_id=@searchterm";
+            command.Parameters.AddWithValue("@searchterm", character.characterID);
+            command.Connection = connection;
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    characterLevel.levelID = reader.GetInt32(0);
+                    characterLevel.level = reader.GetInt32(1);
+                    characterLevel.experiencePoint = reader.GetInt32(2);
+                    characterLevel.characterID = reader.GetInt32(3);
+                }
+                connection.Close();
+
+                return characterLevel;
+            }
         }
     }
 }
