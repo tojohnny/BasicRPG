@@ -114,6 +114,7 @@ namespace BasicRPG
         {
             DateTime time = DateTime.Now;
             string timestamp = time.ToString();
+            CharacterDAO characterDAO = new CharacterDAO();
 
             if (loadedCharacter.Any() == true)
             {
@@ -130,6 +131,8 @@ namespace BasicRPG
                 className = (string)dataGridView2.Rows[rowClicked].Cells[4].Value,
             };
             loadedCharacter.Add(loadCharacter);
+            characterDAO.updateLastLogin(loadCharacter);
+            groupBox1.Text = loadCharacter.characterName;
 
             MessageBox.Show("Welcome back, " + loadCharacter.characterName + ".",
                             "Character Loaded",

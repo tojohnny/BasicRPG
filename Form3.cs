@@ -44,6 +44,7 @@ namespace BasicRPG
                 {
                     MessageBox.Show("Welcome back, " + existingUser.username + ".");
 
+                    userDAO.updateLastLogin(existingUser);
                     existingUserList.Add(existingUser);
                     userBindingSource.DataSource = existingUserList;
 

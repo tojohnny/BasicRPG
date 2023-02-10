@@ -100,5 +100,20 @@ namespace BasicRPG
 
             return newCharacter;
         }
+
+        internal void updateLastLogin(Character character)
+        {
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = new MySqlCommand();
+            command.CommandText = "UPDATE character_history SET character_last_login=@timestamp WHERE character_id=@characterid";
+            command.Parameters.AddWithValue("@timestamp", DateTime.Now);
+            command.Parameters.AddWithValue("@characterid", character.characterID);
+            command.Connection = connection;
+
+            int userUpdate = command.ExecuteNonQuery();
+            connection.Close();
+        }
     }
 }
