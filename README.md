@@ -35,6 +35,12 @@ Single-player Text RPG implemented with as many relevant known RPG mechanics as 
 	- Gender
 	- Race
 	- Class
+	- Character Stats:
+		- Level / Experience
+		- Health Points
+		- Mana Points
+		- Strength, Dexterity, Intelligence, Agility
+	
 - Console / Chatbox
 	- Displays character messages, actions, etc.
 
@@ -53,16 +59,19 @@ List in no particular order.
 - [x] Populate with account data and character data after login.
 - [x] Character creation.
 - [x] Character stats linked to character.
+- [X] Add character level/exp.
 - [ ] Add class data.
 - [ ] Add character inventory/inventory history.
 - [ ] Add items.
-- [ ] Add User Account History.
+- [X] Add User Account History.
 - [X] Add Character History.
 - [x] Add UML diagram to README.
 - [x] Re-design README.
 - [x] Chatbox features.
 - [ ] Chat log output at end of session.
 - [ ] Runtime/Execution log during session.
+- [ ] Refactor SQL queries to remove wildcards.
+- [ ] Update character information window to join character level table and character table.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
