@@ -84,6 +84,8 @@
     <Compile Include="InventoryHistory.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="JobClass.cs" />
+    <Compile Include="Location.cs" />
+    <Compile Include="LocationDAO.cs" />
     <Compile Include="PasswordHash.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

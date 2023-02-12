@@ -14,6 +14,6 @@ namespace BasicRPG
         public string characterRace { get; set; }
         public string className { get; set; }
         public int userID { get; set; }
-
+        public int locationID { get; set; }
     }
 }

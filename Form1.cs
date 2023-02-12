@@ -118,6 +118,8 @@ namespace BasicRPG
             CharacterDAO characterDAO = new CharacterDAO();
             CharacterStat loadedCharacterStats = new CharacterStat();
             CharacterLevel loadedCharacterLevel = new CharacterLevel();
+            LocationDAO locationDAO = new LocationDAO();
+            Location currentLocation = new Location();
 
             if (loadedCharacter.Any() == true)
             {
@@ -139,6 +141,7 @@ namespace BasicRPG
 
             loadedCharacterStats = characterDAO.getCharacterStat(loadCharacter);
             loadedCharacterLevel = characterDAO.getCharacterLevel(loadCharacter);
+            currentLocation = locationDAO.getCurrentLocation(loadCharacter.characterID);
 
             label9.Text = loadedCharacterStats.healthPoint.ToString();
             label10.Text = loadedCharacterStats.manaPoint.ToString();
@@ -149,6 +152,9 @@ namespace BasicRPG
 
             label17.Text = loadedCharacterLevel.level.ToString();
             label18.Text = loadedCharacterLevel.experiencePoint.ToString();
+
+            label21.Text = currentLocation.locationName.ToString();
+            label22.Text = currentLocation.isSafeZone.ToString();
 
             MessageBox.Show("Welcome back, " + loadCharacter.characterName + ".",
                             "Character Loaded",

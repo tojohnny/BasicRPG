@@ -39,6 +39,7 @@ namespace BasicRPG
                         characterRace = reader.GetString(3),
                         className = reader.GetString(4),
                         userID = reader.GetInt32(5),
+                        locationID = reader.GetInt32(6),
                     };
                     allCharacters.Add(character);
                 }
@@ -70,6 +71,7 @@ namespace BasicRPG
                     character.characterRace = reader.GetString(3);
                     character.className = reader.GetString(4);
                     character.userID = reader.GetInt32(5);
+                    character.locationID = reader.GetInt32(6);
                 }
             }
             connection.Close();
