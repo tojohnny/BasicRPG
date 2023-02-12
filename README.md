@@ -60,9 +60,17 @@ List in no particular order.
 - [x] Character creation.
 - [x] Character stats linked to character.
 - [X] Add character level/exp.
+- [ ] Allow user to edit a selected character name.
+- [ ] Allow user to delete a selected character.
 - [ ] Add class data.
 - [ ] Add character inventory/inventory history.
 - [ ] Add items.
+- [ ] Add currency.
+- [ ] Tie map to location, lights up upon entering location.
+- [ ] Create commands for user interaction.
+- [ ] Add enemies.
+- [ ] Finish combat HP functions.
+- [ ] 
 - [X] Add User Account History.
 - [X] Add Character History.
 - [x] Add UML diagram to README.
@@ -77,5 +85,10 @@ List in no particular order.
 
 # License
 Distributed under GNU Affero General Public License v3.0. Please see `licence.txt` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+# Sources
+Random Name Generator- https://thestoryshack.com/
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
