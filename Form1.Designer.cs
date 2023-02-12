@@ -105,6 +105,16 @@
             this.radioButton13 = new System.Windows.Forms.RadioButton();
             this.label38 = new System.Windows.Forms.Label();
             this.radioButton14 = new System.Windows.Forms.RadioButton();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label41 = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label42 = new System.Windows.Forms.Label();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.radioButton15 = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -121,6 +131,8 @@
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -216,9 +228,9 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dataGridView3);
-            this.groupBox2.Location = new System.Drawing.Point(6, 96);
+            this.groupBox2.Location = new System.Drawing.Point(6, 153);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(200, 423);
+            this.groupBox2.Size = new System.Drawing.Size(200, 366);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Inventory";
@@ -226,9 +238,9 @@
             // dataGridView3
             // 
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(6, 20);
+            this.dataGridView3.Location = new System.Drawing.Point(6, 19);
             this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(188, 397);
+            this.dataGridView3.Size = new System.Drawing.Size(188, 341);
             this.dataGridView3.TabIndex = 0;
             // 
             // textBox1
@@ -350,6 +362,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox9);
+            this.groupBox1.Controls.Add(this.groupBox8);
             this.groupBox1.Controls.Add(this.groupBox5);
             this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Controls.Add(this.label17);
@@ -579,6 +593,7 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.radioButton15);
             this.groupBox6.Controls.Add(this.radioButton14);
             this.groupBox6.Controls.Add(this.label38);
             this.groupBox6.Controls.Add(this.radioButton13);
@@ -944,11 +959,110 @@
             this.radioButton14.Text = "Enchantment Square";
             this.radioButton14.UseVisualStyleBackColor = true;
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.label40);
+            this.groupBox7.Controls.Add(this.label39);
+            this.groupBox7.Location = new System.Drawing.Point(6, 96);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(200, 51);
+            this.groupBox7.TabIndex = 12;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Wealth";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(6, 22);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(61, 13);
+            this.label39.TabIndex = 0;
+            this.label39.Text = "Gold Coins:";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(113, 22);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(35, 13);
+            this.label40.TabIndex = 1;
+            this.label40.Text = "NULL";
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.progressBar2);
+            this.groupBox8.Controls.Add(this.label42);
+            this.groupBox8.Controls.Add(this.progressBar1);
+            this.groupBox8.Controls.Add(this.label41);
+            this.groupBox8.Location = new System.Drawing.Point(7, 234);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(221, 120);
+            this.groupBox8.TabIndex = 6;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Combat";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(6, 20);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(53, 13);
+            this.label41.TabIndex = 0;
+            this.label41.Text = "Character";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.ForeColor = System.Drawing.Color.ForestGreen;
+            this.progressBar1.Location = new System.Drawing.Point(6, 39);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(209, 23);
+            this.progressBar1.TabIndex = 1;
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(6, 68);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(39, 13);
+            this.label42.TabIndex = 2;
+            this.label42.Text = "Enemy";
+            // 
+            // progressBar2
+            // 
+            this.progressBar2.ForeColor = System.Drawing.Color.ForestGreen;
+            this.progressBar2.Location = new System.Drawing.Point(6, 87);
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(209, 23);
+            this.progressBar2.TabIndex = 3;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Location = new System.Drawing.Point(7, 361);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(221, 147);
+            this.groupBox9.TabIndex = 7;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Commands";
+            // 
+            // radioButton15
+            // 
+            this.radioButton15.AutoCheck = false;
+            this.radioButton15.AutoSize = true;
+            this.radioButton15.Enabled = false;
+            this.radioButton15.Location = new System.Drawing.Point(279, 198);
+            this.radioButton15.Name = "radioButton15";
+            this.radioButton15.Size = new System.Drawing.Size(133, 17);
+            this.radioButton15.TabIndex = 30;
+            this.radioButton15.TabStop = true;
+            this.radioButton15.Text = "TO BE CONTINUED...";
+            this.radioButton15.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1207, 805);
+            this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button6);
@@ -981,6 +1095,10 @@
             this.groupBox4.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1063,6 +1181,16 @@
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.ProgressBar progressBar2;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.RadioButton radioButton15;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label39;
     }
 }
 
