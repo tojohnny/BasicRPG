@@ -70,7 +70,6 @@ List in no particular order.
 - [ ] Create commands for user interaction.
 - [ ] Add enemies.
 - [ ] Finish combat HP functions.
-- [ ] 
 - [X] Add User Account History.
 - [X] Add Character History.
 - [x] Add UML diagram to README.
@@ -89,6 +88,6 @@ Distributed under GNU Affero General Public License v3.0. Please see `licence.tx
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 # Sources
-Random Name Generator- https://thestoryshack.com/
+Random Name Generator - https://thestoryshack.com/
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
