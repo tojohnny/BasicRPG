@@ -24,15 +24,21 @@ Single-player Text RPG implemented with as many relevant known RPG mechanics as 
 - New User Registration
 	- Encrypted password (SHA256).
 - Returning User Login
-- Player Character
-	- Character Creation
-	- Edit Character Name
-	- Delete Character
-	- Multiple Characters per Account
+- History System (Logging)
+	- User History
+		- Creation
+		- Last Login
+	- Character History
+		- Creation
+		- Last Login
+- Player Systems
+	- Character
+		- Edit Character Name
+		- Delete Character
+		- Multiple Characters per Account
+	- Currency
 - Console
 	- Displays messages, actions, etc.
-- Map
-	- Updates on user location.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -55,7 +61,7 @@ List in no particular order.
 - [ ] Add class data.
 - [ ] Add character inventory/inventory history.
 - [ ] Add items.
-- [ ] Add currency.
+- [x] Add currency.
 - [ ] Tie map to location, lights up upon entering location.
 - [ ] Create commands for user interaction.
 - [ ] Add enemies.
