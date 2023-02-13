@@ -30,7 +30,7 @@ namespace BasicRPG
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Information,
                 MessageBoxDefaultButton.Button2);
-            
+
             if (result == DialogResult.Yes)
             {
                 var form2 = new Form2();
@@ -173,10 +173,35 @@ namespace BasicRPG
 
             if (e.KeyCode == Keys.Enter)
             {
-                string modifiedMessage = "["+ (string)timestamp +"] (PLAYER) " + loadedCharacter[0].characterName + ": " + textBox2.Text;
+                string modifiedMessage = "[" + (string)timestamp + "] (PLAYER) " + loadedCharacter[0].characterName + ": " + textBox2.Text;
                 textBox1.AppendText(modifiedMessage);
                 textBox1.AppendText(Environment.NewLine);
                 textBox2.Text = null;
+            }
+        }
+
+        // Edit character name
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var rowClicked = dataGridView2.CurrentCell.RowIndex;
+
+            DialogResult result = MessageBox.Show("Do you want to edit " + dataGridView2.Rows[rowClicked].Cells[1].Value.ToString() + "?",
+                            "Edit Character Name",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                var form5 = new Form5();
+                form5.Owner = this;
+                form5.ShowDialog();
+            }
+            else if (result == DialogResult.No)
+            {
+                MessageBox.Show("Name Change Canceled.",
+                                "Action Canceled",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
             }
         }
     }

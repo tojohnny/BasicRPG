@@ -178,5 +178,20 @@ namespace BasicRPG
                 return characterLevel;
             }
         }
+
+        internal void changeCharacterName(string characterName, int characterID)
+        {
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = new MySqlCommand();
+            command.CommandText = "UPDATE `character` SET character_name=@charactername WHERE character_id=@characterid";
+            command.Parameters.AddWithValue("@charactername", characterName);
+            command.Parameters.AddWithValue("@characterid", characterID);
+            command.Connection = connection;
+
+            int userUpdate = command.ExecuteNonQuery();
+            connection.Close();
+        }
     }
 }
