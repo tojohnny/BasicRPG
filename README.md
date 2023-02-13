@@ -21,28 +21,18 @@ Single-player Text RPG implemented with as many relevant known RPG mechanics as 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 # Features
-- New User Registration Form
-	- Username
-	- Password/Re-enter Password
-		- Stored as SHA256 Encrypted string.
-	- E-mail/Re-enter Email
-- Login Form
-	- Username
-	- Password
-
-- Character Creation
-	- Name
-	- Gender
-	- Race
-	- Class
-	- Character Stats:
-		- Level / Experience
-		- Health Points
-		- Mana Points
-		- Strength, Dexterity, Intelligence, Agility
-	
-- Console / Chatbox
-	- Displays character messages, actions, etc.
+- New User Registration
+	- Encrypted password (SHA256).
+- Returning User Login
+- Player Character
+	- Character Creation
+	- Edit Character Name
+	- Delete Character
+	- Multiple Characters per Account
+- Console
+	- Displays messages, actions, etc.
+- Map
+	- Updates on user location.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -60,8 +50,8 @@ List in no particular order.
 - [x] Character creation.
 - [x] Character stats linked to character.
 - [X] Add character level/exp.
-- [ ] Allow user to edit a selected character name.
-- [ ] Allow user to delete a selected character.
+- [X] Allow user to edit a selected character name.
+- [X] Allow user to delete a selected character.
 - [ ] Add class data.
 - [ ] Add character inventory/inventory history.
 - [ ] Add items.
