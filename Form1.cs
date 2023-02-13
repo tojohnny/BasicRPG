@@ -135,10 +135,14 @@ namespace BasicRPG
                 characterGender = (string)dataGridView2.Rows[rowClicked].Cells[2].Value,
                 characterRace = (string)dataGridView2.Rows[rowClicked].Cells[3].Value,
                 className = (string)dataGridView2.Rows[rowClicked].Cells[4].Value,
+                locationID = (int)dataGridView2.Rows[rowClicked].Cells[5].Value,
             };
             loadedCharacter.Add(loadCharacter);
             characterDAO.updateLastLogin(loadCharacter);
+            updateMapLocation(loadCharacter.locationID);
+
             groupBox1.Text = loadCharacter.characterName;
+            label41.Text = loadCharacter.characterName;
 
             loadedCharacterStats = characterDAO.getCharacterStat(loadCharacter);
             loadedCharacterLevel = characterDAO.getCharacterLevel(loadCharacter);
@@ -234,6 +238,91 @@ namespace BasicRPG
                                 "Action Canceled",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
+            }
+        }
+
+        private void updateMapLocation(int locationID)
+        {
+            LocationDAO locationDAO = new LocationDAO();
+            Location currentLocation = new Location();
+            List<Location> allLocations = new List<Location>();
+
+            currentLocation = locationDAO.getCurrentLocation(locationID);
+
+            switch(currentLocation.locationName)
+            {
+                case "Tutorial":
+                    radioButton1.Checked = true;
+                    radioButton1.Refresh();
+                    break;
+                case "Linhaven":
+                    radioButton2.Checked = true;
+                    radioButton2.Refresh();
+                    break;
+                case "Baradin's Armory":
+                    radioButton3.Checked = true;
+                    radioButton3.Refresh();
+                    break;
+                case "Faded Juniper Forest":
+                    radioButton4.Checked = true;
+                    radioButton5.Refresh();
+                    break;
+                case "Andreas's General Shop":
+                    radioButton5.Checked = true;
+                    radioButton5.Refresh();
+                    break;
+                case "Wiltou Harbor":
+                    radioButton6.Checked = true;
+                    radioButton6.Refresh();
+                    break;
+                case "Baltsou Fortress":
+                    radioButton7.Checked = true;
+                    radioButton7.Refresh();
+                    break;
+                case "Jolfolk Prairie 1-1":
+                    radioButton8.Checked = true;
+                    radioButton8.Refresh();
+                    break;
+                case "Jolfolk Prairie 1-2":
+                    radioButton9.Checked = true;
+                    radioButton9.Refresh();
+                    break;
+                case "Glouset Bridge":
+                    radioButton10.Checked = true;
+                    radioButton10.Refresh();
+                    break;
+                case "Berry Passage":
+                    radioButton11.Checked = true;
+                    radioButton11.Refresh();
+                    break;
+                case "Shenoque Caverns":
+                    radioButton12.Checked = true;
+                    radioButton12.Refresh();
+                    break;
+                case "Richlet Den":
+                    radioButton13.Checked = true;
+                    radioButton13.Refresh();
+                    break;
+                case "Enchantment Square":
+                    radioButton14.Checked = true;
+                    radioButton14.Refresh();
+                    break;
+                default:
+                    radioButton1.Checked = false;
+                    radioButton2.Checked = false;
+                    radioButton3.Checked = false;
+                    radioButton4.Checked = false;
+                    radioButton5.Checked = false;
+                    radioButton6.Checked = false;
+                    radioButton7.Checked = false;
+                    radioButton8.Checked = false;
+                    radioButton9.Checked = false;
+                    radioButton10.Checked = false;
+                    radioButton11.Checked = false;
+                    radioButton12.Checked = false;
+                    radioButton13.Checked = false;
+                    radioButton14.Checked = false;
+                    break;
             }
         }
     }

@@ -39,5 +39,35 @@ namespace BasicRPG
                 return currentLocation;
             }
         }
+
+        internal List<Location> getAllMaps()
+        {
+            List<Location> allLocations = new List<Location>();
+
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = new MySqlCommand();
+
+            command.CommandText = "SELECT `location_id`, `location_name`, `location_safe_zone` FROM `location`";
+            command.Connection = connection;
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Location location = new Location
+                    {
+                        locationID = reader.GetInt32(0),
+                        locationName = reader.GetString(1),
+                        isSafeZone = reader.GetBoolean(2),
+                    };
+                    allLocations.Add(location);
+                }
+                connection.Close();
+
+                return allLocations;
+            }
+        }
     }
 }
