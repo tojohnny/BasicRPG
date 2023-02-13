@@ -207,5 +207,32 @@ namespace BasicRPG
             int userUpdate = command.ExecuteNonQuery();
             connection.Close();
         }
+
+        internal Wealth getCharacterWealth(int characterID)
+        {
+            Wealth wealth = new Wealth();
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = new MySqlCommand();
+
+            command.CommandText = "SELECT `wealth_id`, `gold_coin_amount`, `character_id`" +
+                " FROM `wealth` WHERE character_id=@characterid";
+            command.Parameters.AddWithValue("@characterid", characterID);
+            command.Connection = connection;
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    wealth.wealthID = reader.GetInt32(0);
+                    wealth.goldCoinAmount = reader.GetInt32(1);
+                    wealth.characterID = reader.GetInt32(2);
+                }
+                connection.Close();
+
+                return wealth;
+            }
+        }
     }
 }

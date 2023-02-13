@@ -116,6 +116,7 @@
     <Compile Include="User.cs" />
     <Compile Include="UserDAO.cs" />
     <Compile Include="UserHistory.cs" />
+    <Compile Include="Wealth.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

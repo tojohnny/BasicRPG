@@ -120,6 +120,7 @@ namespace BasicRPG
             CharacterLevel loadedCharacterLevel = new CharacterLevel();
             LocationDAO locationDAO = new LocationDAO();
             Location currentLocation = new Location();
+            Wealth currentWealth = new Wealth();
 
             if (loadedCharacter.Any() == true)
             {
@@ -142,6 +143,7 @@ namespace BasicRPG
             loadedCharacterStats = characterDAO.getCharacterStat(loadCharacter);
             loadedCharacterLevel = characterDAO.getCharacterLevel(loadCharacter);
             currentLocation = locationDAO.getCurrentLocation(loadCharacter.characterID);
+            currentWealth = characterDAO.getCharacterWealth(loadCharacter.characterID);
 
             label9.Text = loadedCharacterStats.healthPoint.ToString();
             label10.Text = loadedCharacterStats.manaPoint.ToString();
@@ -155,6 +157,8 @@ namespace BasicRPG
 
             label21.Text = currentLocation.locationName.ToString();
             label22.Text = currentLocation.isSafeZone.ToString();
+
+            label40.Text = currentWealth.goldCoinAmount.ToString();
 
             MessageBox.Show("Welcome back, " + loadCharacter.characterName + ".",
                             "Character Loaded",
