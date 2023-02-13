@@ -326,6 +326,7 @@
             this.button5.TabIndex = 2;
             this.button5.Text = "Delete";
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button4
             // 
@@ -333,7 +334,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(67, 23);
             this.button4.TabIndex = 1;
-            this.button4.Text = "Edit";
+            this.button4.Text = "Edit Name";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 

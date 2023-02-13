@@ -204,5 +204,33 @@ namespace BasicRPG
                                 MessageBoxIcon.Information);
             }
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            CharacterDAO characterDAO = new CharacterDAO();
+            var rowClicked = dataGridView2.CurrentCell.RowIndex;
+
+            DialogResult result = MessageBox.Show("Do you want to delete " + dataGridView2.Rows[rowClicked].Cells[1].Value.ToString() + "?",
+                            "Edit Character Name",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                characterDAO.deleteCharacter((int)dataGridView2.Rows[rowClicked].Cells[0].Value);
+
+                MessageBox.Show("Character " + dataGridView2.Rows[rowClicked].Cells[1].Value + " is deleted.",
+                "Character Deletion Success.",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+            }
+            else if (result == DialogResult.No)
+            {
+                MessageBox.Show("Name Change Canceled.",
+                                "Action Canceled",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+            }
+        }
     }
 }

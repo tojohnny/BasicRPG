@@ -193,5 +193,19 @@ namespace BasicRPG
             int userUpdate = command.ExecuteNonQuery();
             connection.Close();
         }
+
+        internal void deleteCharacter(int characterID)
+        {
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = new MySqlCommand();
+            command.CommandText = "DELETE FROM `character` WHERE character_id=@characterid";
+            command.Parameters.AddWithValue("@characterid", characterID);
+            command.Connection = connection;
+
+            int userUpdate = command.ExecuteNonQuery();
+            connection.Close();
+        }
     }
 }
