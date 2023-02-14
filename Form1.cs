@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,6 +15,7 @@ namespace BasicRPG
     public partial class Form1 : Form
     {
         private static List<Character> loadedCharacter = new List<Character>();
+        int chatDelay = 3000;
 
         // BasicRPG Initialization
         public Form1()
@@ -139,7 +141,6 @@ namespace BasicRPG
             };
             loadedCharacter.Add(loadCharacter);
             characterDAO.updateLastLogin(loadCharacter);
-            updateMapLocation(loadCharacter.locationID);
 
             groupBox1.Text = loadCharacter.characterName;
             label41.Text = loadCharacter.characterName;
@@ -169,8 +170,31 @@ namespace BasicRPG
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
 
-            textBox1.AppendText("[" + (string)timestamp + "] (SYSTEM): " + "Welcome back, " + loadedCharacter[0].characterName + ". ");
+            time = DateTime.Now;
+            timestamp = time.ToString();
+            textBox1.AppendText("[" + (string)timestamp + "] (System): " + "Welcome back, " + loadedCharacter[0].characterName + ". ");
             textBox1.AppendText(Environment.NewLine);
+            Thread.Sleep(chatDelay);
+
+            time = DateTime.Now;
+            timestamp = time.ToString();
+            textBox1.AppendText("[" + (string)timestamp + "] (System): " + "Loading suitable scenario, please wait.");
+            textBox1.AppendText(Environment.NewLine);
+            Thread.Sleep(chatDelay);
+
+            time = DateTime.Now;
+            timestamp = time.ToString();
+            textBox1.AppendText("[" + (string)timestamp + "] (Tutorial): " + "Loading suitable scenario, please wait. .");
+            textBox1.AppendText(Environment.NewLine);
+            Thread.Sleep(chatDelay);
+
+            time = DateTime.Now;
+            timestamp = time.ToString();
+            textBox1.AppendText("[" + (string)timestamp + "] (Tutorial): " + "Loading suitable scenario, please wait. . .");
+            textBox1.AppendText(Environment.NewLine);
+            Thread.Sleep(chatDelay);
+
+            updateMapLocation(loadCharacter.locationID);
         }
 
         // COMMAND BOX TO CONSOLE
@@ -249,7 +273,23 @@ namespace BasicRPG
 
             currentLocation = locationDAO.getCurrentLocation(locationID);
 
-            switch(currentLocation.locationName)
+            // Turn all off first.
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
+            radioButton3.Checked = false;
+            radioButton4.Checked = false;
+            radioButton5.Checked = false;
+            radioButton6.Checked = false;
+            radioButton7.Checked = false;
+            radioButton8.Checked = false;
+            radioButton9.Checked = false;
+            radioButton10.Checked = false;
+            radioButton11.Checked = false;
+            radioButton12.Checked = false;
+            radioButton13.Checked = false;
+            radioButton14.Checked = false;
+
+            switch (currentLocation.locationName)
             {
                 case "Tutorial":
                     radioButton1.Checked = true;
@@ -323,6 +363,65 @@ namespace BasicRPG
                     radioButton13.Checked = false;
                     radioButton14.Checked = false;
                     break;
+            }
+
+            loadScenario(currentLocation.locationName);
+        }
+
+        private void loadScenario(string locationName)
+        {
+            DateTime time = DateTime.Now;
+            string timestamp = time.ToString();
+
+            switch (locationName)
+            {
+                case "Tutorial":
+                    textBox1.AppendText("[" + (string)timestamp + "] (Tutorial): " + "Welcome to the tutorial, " + loadedCharacter[0].characterName + ". ");
+                    textBox1.AppendText(Environment.NewLine);
+                    Thread.Sleep(chatDelay);
+
+                    time = DateTime.Now;
+                    timestamp = time.ToString();
+                    textBox1.AppendText("[" + (string)timestamp + "] (Tutorial): " + "You are now a registered adventurer in the world called The Edge Expanse.");
+                    textBox1.AppendText(Environment.NewLine);
+                    Thread.Sleep(chatDelay);
+
+                    time = DateTime.Now;
+                    timestamp = time.ToString();
+                    textBox1.AppendText("[" + (string)timestamp + "] (Tutorial): " + "Ah so you have already chosen a class... Let's see what you have chosen...");
+                    textBox1.AppendText(Environment.NewLine);
+                    Thread.Sleep(chatDelay);
+
+                    time = DateTime.Now;
+                    timestamp = time.ToString();
+                    textBox1.AppendText("[" + (string)timestamp + "] (Tutorial): " + loadedCharacter[0].className + "? Hmm...");
+                    textBox1.AppendText(Environment.NewLine);
+                    Thread.Sleep(chatDelay);
+
+                    time = DateTime.Now;
+                    timestamp = time.ToString();
+                    textBox1.AppendText("[" + (string)timestamp + "] (Tutorial): " + "Looking at your past self, this is a very suitable selection for you. I will not change it.");
+                    textBox1.AppendText(Environment.NewLine);
+                    Thread.Sleep(chatDelay);
+
+                    time = DateTime.Now;
+                    timestamp = time.ToString();
+                    textBox1.AppendText("[" + (string)timestamp + "] (Tutorial): " + "Given that you will enter this world with nothing, I will present you...");
+                    textBox1.AppendText(Environment.NewLine);
+                    Thread.Sleep(chatDelay);
+
+                    time = DateTime.Now;
+                    timestamp = time.ToString();
+                    textBox1.AppendText("[" + (string)timestamp + "] (Tutorial): " + "A starter package.");
+                    textBox1.AppendText(Environment.NewLine);
+                    Thread.Sleep(chatDelay);
+
+                    break;
+                default:
+                    textBox1.AppendText("ERROR ERROR ERROR, USER IS NOT IN A VALID LOCATION.");
+                    textBox1.AppendText(Environment.NewLine);
+                    break;
+
             }
         }
     }
