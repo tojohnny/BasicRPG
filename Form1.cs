@@ -170,27 +170,23 @@ namespace BasicRPG
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
 
-            time = DateTime.Now;
-            timestamp = time.ToString();
+            timestamp = DateTime.Now.ToString();
             textBox1.AppendText("[" + (string)timestamp + "] (System): " + "Welcome back, " + loadedCharacter[0].characterName + ". ");
             textBox1.AppendText(Environment.NewLine);
             Thread.Sleep(chatDelay);
 
-            time = DateTime.Now;
-            timestamp = time.ToString();
-            textBox1.AppendText("[" + (string)timestamp + "] (System): " + "Loading suitable scenario, please wait.");
+            timestamp = DateTime.Now.ToString();
+            textBox1.AppendText("[" + (string)timestamp + "] (System): " + "Loading scenario, please wait.");
             textBox1.AppendText(Environment.NewLine);
             Thread.Sleep(chatDelay);
 
-            time = DateTime.Now;
-            timestamp = time.ToString();
-            textBox1.AppendText("[" + (string)timestamp + "] (Tutorial): " + "Loading suitable scenario, please wait. .");
+            timestamp = DateTime.Now.ToString();
+            textBox1.AppendText("[" + (string)timestamp + "] (Tutorial): " + "Loading scenario, please wait. .");
             textBox1.AppendText(Environment.NewLine);
             Thread.Sleep(chatDelay);
 
-            time = DateTime.Now;
-            timestamp = time.ToString();
-            textBox1.AppendText("[" + (string)timestamp + "] (Tutorial): " + "Loading suitable scenario, please wait. . .");
+            timestamp = DateTime.Now.ToString();
+            textBox1.AppendText("[" + (string)timestamp + "] (Tutorial): " + "Loading scenario, please wait. . .");
             textBox1.AppendText(Environment.NewLine);
             Thread.Sleep(chatDelay);
 
@@ -380,38 +376,32 @@ namespace BasicRPG
                     textBox1.AppendText(Environment.NewLine);
                     Thread.Sleep(chatDelay);
 
-                    time = DateTime.Now;
-                    timestamp = time.ToString();
+                    timestamp = DateTime.Now.ToString();
                     textBox1.AppendText("[" + (string)timestamp + "] (Tutorial): " + "You are now a registered adventurer in the world called The Edge Expanse.");
                     textBox1.AppendText(Environment.NewLine);
                     Thread.Sleep(chatDelay);
 
-                    time = DateTime.Now;
-                    timestamp = time.ToString();
+                    timestamp = DateTime.Now.ToString();
                     textBox1.AppendText("[" + (string)timestamp + "] (Tutorial): " + "Ah so you have already chosen a class... Let's see what you have chosen...");
                     textBox1.AppendText(Environment.NewLine);
                     Thread.Sleep(chatDelay);
 
-                    time = DateTime.Now;
-                    timestamp = time.ToString();
+                    timestamp = DateTime.Now.ToString();
                     textBox1.AppendText("[" + (string)timestamp + "] (Tutorial): " + loadedCharacter[0].className + "? Hmm...");
                     textBox1.AppendText(Environment.NewLine);
                     Thread.Sleep(chatDelay);
 
-                    time = DateTime.Now;
-                    timestamp = time.ToString();
+                    timestamp = DateTime.Now.ToString();
                     textBox1.AppendText("[" + (string)timestamp + "] (Tutorial): " + "Looking at your past self, this is a very suitable selection for you. I will not change it.");
                     textBox1.AppendText(Environment.NewLine);
                     Thread.Sleep(chatDelay);
 
-                    time = DateTime.Now;
-                    timestamp = time.ToString();
+                    timestamp = DateTime.Now.ToString();
                     textBox1.AppendText("[" + (string)timestamp + "] (Tutorial): " + "Given that you will enter this world with nothing, I will present you...");
                     textBox1.AppendText(Environment.NewLine);
                     Thread.Sleep(chatDelay);
 
-                    time = DateTime.Now;
-                    timestamp = time.ToString();
+                    timestamp = DateTime.Now.ToString();
                     textBox1.AppendText("[" + (string)timestamp + "] (Tutorial): " + "A starter package.");
                     textBox1.AppendText(Environment.NewLine);
                     Thread.Sleep(chatDelay);
