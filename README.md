@@ -62,7 +62,7 @@ List in no particular order.
 - [ ] Add character inventory/inventory history.
 - [ ] Add items.
 - [x] Add currency.
-- [ ] Tie map to location, lights up upon entering location.
+- [x] Tie map to location, lights up upon entering location.
 - [ ] Create commands for user interaction.
 - [ ] Add enemies.
 - [ ] Finish combat HP functions.
