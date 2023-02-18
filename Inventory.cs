@@ -9,9 +9,7 @@ namespace BasicRPG
     internal class Inventory
     {
         public int inventoryID { get; set; }
-        public int totalInventorySlots { get; set; }
+        public int inventorySlotMax { get; set; }
         public int characterID { get; set; }
-        public int userID { get; set; }
-        public List<Item> item { get; set; }
     }
 }

@@ -181,12 +181,12 @@ namespace BasicRPG
             Thread.Sleep(chatDelay);
 
             timestamp = DateTime.Now.ToString();
-            textBox1.AppendText("[" + (string)timestamp + "] (Tutorial): " + "Loading scenario, please wait. .");
+            textBox1.AppendText("[" + (string)timestamp + "] (System): " + "Loading scenario, please wait. .");
             textBox1.AppendText(Environment.NewLine);
             Thread.Sleep(chatDelay);
 
             timestamp = DateTime.Now.ToString();
-            textBox1.AppendText("[" + (string)timestamp + "] (Tutorial): " + "Loading scenario, please wait. . .");
+            textBox1.AppendText("[" + (string)timestamp + "] (System): " + "Loading scenario, please wait. . .");
             textBox1.AppendText(Environment.NewLine);
             Thread.Sleep(chatDelay);
 
@@ -201,10 +201,22 @@ namespace BasicRPG
 
             if (e.KeyCode == Keys.Enter)
             {
-                string modifiedMessage = "[" + (string)timestamp + "] (PLAYER) " + loadedCharacter[0].characterName + ": " + textBox2.Text;
-                textBox1.AppendText(modifiedMessage);
-                textBox1.AppendText(Environment.NewLine);
-                textBox2.Text = null;
+                switch (textBox2.Text)
+                {
+                    case "help":
+                        timestamp = DateTime.Now.ToString();
+                        textBox1.AppendText("[" + (string)timestamp + "] (System): " + "Helpful commands are not available yet.");
+                        textBox1.AppendText(Environment.NewLine);
+                        textBox2.Text = null;
+                        break;
+                    default:
+                        timestamp = DateTime.Now.ToString();
+                        string modifiedMessage = "[" + (string)timestamp + "] (PLAYER) " + loadedCharacter[0].characterName + ": " + textBox2.Text;
+                        textBox1.AppendText(modifiedMessage);
+                        textBox1.AppendText(Environment.NewLine);
+                        textBox2.Text = null;
+                        break;
+                }
             }
         }
 
