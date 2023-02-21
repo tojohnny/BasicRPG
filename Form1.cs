@@ -198,15 +198,20 @@ namespace BasicRPG
         {
             DateTime time = DateTime.Now;
             string timestamp = time.ToString();
+            InventoryDAO inventoryDAO = new InventoryDAO();
 
             if (e.KeyCode == Keys.Enter)
             {
                 switch (textBox2.Text)
                 {
-                    case "help":
+                    case "/help":
                         timestamp = DateTime.Now.ToString();
                         textBox1.AppendText("[" + (string)timestamp + "] (System): " + "Helpful commands are not available yet.");
                         textBox1.AppendText(Environment.NewLine);
+                        textBox2.Text = null;
+                        break;
+                    case "/givestarterpackage":
+                        inventoryDAO.giveStarterPackage();
                         textBox2.Text = null;
                         break;
                     default:
