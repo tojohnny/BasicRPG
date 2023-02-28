@@ -87,6 +87,7 @@
       <DependentUpon>Form5.cs</DependentUpon>
     </Compile>
     <Compile Include="Inventory.cs" />
+    <Compile Include="InventoryDAO.cs" />
     <Compile Include="InventoryHistory.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="JobClass.cs" />

@@ -17,7 +17,13 @@ namespace BasicRPG
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
 
+            MySqlCommand command = new MySqlCommand();
+            command.CommandText = "SELECT `slots.*` " +
+                "FROM `inventory_slots` slots " +
+                "JOIN `inventory_slot_has_item islot` ON `slots.inventory_slot_id` = `islot.inventory_slot_id` " +
+                "JOIN `item it` ON `islot.item_id` = `it.item_id` WHERE it.item
 
+            command.Connection = connection;
         }
     }
 }
